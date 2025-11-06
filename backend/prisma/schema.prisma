@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+generator client {
+  provider = "prisma-client-js"
+}
+
+// 1. Entidade: Usuário (Usuario)
+model Usuario {
+  id              String      @id @default(auto()) @map("_id") @db.ObjectId
+  nome            String
+  email           String      @unique
+  senha_hash      String
+  data_cadastro   DateTime    @default(now())
+
+  // Relacionamentos:
+  transacoes      Transacao[]
+  categorias      Categoria[]
+  orcamentos      Orcamento[]
+}
+
+// 2. Entidade: Categoria (Categoria)
+model Categoria {
+  id              String      @id @default(auto()) @map("_id") @db.ObjectId
+  // Chave estrangeira para o usuário
+  id_usuario      String      @db.ObjectId
+  usuario         Usuario     @relation(fields: [id_usuario], references: [id])
+  
+  nome            String
+  tipo            String
+  padrao          Boolean     @default(false)
+  
+  transacoes      Transacao[]
+  orcamentos      Orcamento[]
+
+  // Índice composto para garantir nome único por usuário
+  @@unique([id_usuario, nome]) 
+}
+
+// 3. Entidade: Transação (Transacao)
+model Transacao {
+  id              String      @id @default(auto()) @map("_id") @db.ObjectId
+  
+  // Chaves estrangeiras
+  id_usuario      String      @db.ObjectId
+  usuario         Usuario     @relation(fields: [id_usuario], references: [id])
+
+  id_categoria    String      @db.ObjectId
+  categoria       Categoria   @relation(fields: [id_categoria], references: [id])
+
+  valor           Float       // MongoDB usa Float, não Numeric.
+  descricao       String?     // O ponto de interrogação indica que é opcional
+  data            DateTime
+  tipo            String
+}
+
+// 4. Entidade: Orçamento (Orcamento)
+model Orcamento {
+  id              String      @id @default(auto()) @map("_id") @db.ObjectId
+
+  // Chaves estrangeiras
+  id_usuario      String      @db.ObjectId
+  usuario         Usuario     @relation(fields: [id_usuario], references: [id])
+  
+  id_categoria    String      @db.ObjectId
+  categoria       Categoria   @relation(fields: [id_categoria], references: [id])
+  
+  limite_valor    Float
+  mes_referencia  String      // 'YYYY-MM'
+
+  // Garantia de um orçamento por categoria por mês por usuário
+  @@unique([id_usuario, id_categoria, mes_referencia])
+}
