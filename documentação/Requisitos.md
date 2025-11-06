@@ -24,7 +24,7 @@ Os requisitos funcionais descrevem o que o sistema deve fazer.
 | RF08       | O sistema deve alertar o usuário quando o gasto em uma categoria estiver próximo (ex: 80%) ou exceder o orçamento definido (RF07)      |    Baixa        |
 | RF09       | O sistema deve calcular e exibir o saldo atual (Total de Receitas - Total de Despesas).      |    Alta        |
 | RF010       | O sistema deve permitir o Cadastro de novos Usuários com Nome/E-mail e Senha.      |    Alta        |
-| RF010       | O sistema deve permitir o Cadastro de novos Usuários com Nome/E-mail e Senha.      |    Alta        |
+| RF010.1      | O sistema deve permitir o Login de Usuários cadastrados por meio de E-mail e Senha.      |    Alta        |
 | RF010       | O sistema deve permitir o Logout do Usuário.      |    Média       |
 
 
