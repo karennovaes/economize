@@ -3,6 +3,10 @@ const express = require('express');
 require('dotenv').config(); 
 require('./config/db'); // Inicializa a conexão Prisma
 const authRoutes = require('./routes/authRoutes') // Importação da rota de autenticação
+const transactionRoutes = require('./routes/transactionRoutes'); // Importa o arquivo de rotas de transação
+const categoryRoutes = require('./routes/categoryRoutes'); // Importa o arquivo de rotas de categorias
+const dashboardRoutes = require('./routes/dashboardRoutes'); //Importa o arquivo de rotas de dashboard
+const budgetRoutes = require('./routes/budgetRoutes'); //Importa o arquivo de rotas de orçamento
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,7 +20,16 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send('Servidor Economize (MongoDB) rodando!');
 });
+// Conecta as rotas de autenticação (já existentes)
 app.use('/auth', authRoutes);
+// Conecta as rotas de transações no path /transactions (PROTEGIDO)
+app.use('/transactions', transactionRoutes);
+// Conecta as rotas de categoria
+app.use('/categories', categoryRoutes);
+// Conecta as rotas de dashboard/relatórios
+app.use('/dashboard', dashboardRoutes);
+// Conecta as rotas de orçamento
+app.use('/budgets', budgetRoutes);
 
 app.listen(PORT, () => {
     console.log(`🚀 Servidor rodando na porta ${PORT}`);
