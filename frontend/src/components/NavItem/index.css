@@ -1,0 +1,17 @@
+.nav-item{
+    text-align: center;
+    padding: 10px;
+    .nav-link{
+        text-decoration: none;
+        font-size: 16px;
+        color: #c8c8c8;
+        
+
+        &.active,
+        &:hover {
+            color: #f7f5ff;
+            border-bottom: 2px solid #7250e9;
+
+        }
+    }
+}
