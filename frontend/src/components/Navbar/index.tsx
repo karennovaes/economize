@@ -5,6 +5,8 @@ import Image from 'next/image'
 import NavItem, { NavItemInterface } from '../NavItem';
 import "./index.css"
 import { usePathname } from 'next/navigation';
+import { FaBars, FaXmark } from 'react-icons/fa6';
+import { useState } from 'react';
 
 export default function Navbar() {
     const itens: NavItemInterface[] = [
@@ -24,6 +26,7 @@ export default function Navbar() {
 
 
     const pathname = usePathname();
+    const [openMenu, setOpenMenu] = useState<boolean>(false);
 
     return (
         <header>
@@ -35,7 +38,7 @@ export default function Navbar() {
                     height={50} 
                     alt="Logo do sistema"/>
                 </Link>
-                <ul className='nav-items'>
+                <ul className={`nav-items ${openMenu ? 'open' : ''}`}>
                     {itens.map((item, index)=>(
                         <NavItem
                             key={index}
@@ -45,7 +48,9 @@ export default function Navbar() {
                         />
                     ))}
                 </ul>
-
+            <button className="btn-mobile" onClick={() => setOpenMenu(!openMenu)}>
+                {openMenu ? <FaXmark /> : <FaBars />}
+            </button >
             <button className='btn-default'>
                 Entrar
             </button>

@@ -1,10 +1,11 @@
 .nav-item{
+    text-align: center;
+    padding: 10px;
     .nav-link{
         text-decoration: none;
         font-size: 16px;
         color: #c8c8c8;
-        padding: 4px 0px;
-        transition: color 0.3s;
+        
 
         &.active,
         &:hover {
