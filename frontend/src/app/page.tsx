@@ -3,14 +3,6 @@ import { Slider, SliderProps, Slide } from '@/components/Slider/';
 import React from 'react';
 
 import Image from 'next/image'
-import slide1 from "../../public/1.png"
-import slide2 from "../../public/2.png"
-import slide3 from "../../public/3.png"
-
-
-
-
-
 
 export default function Home() {
   const settings: SliderProps = {
@@ -21,18 +13,20 @@ export default function Home() {
 
   };
 return (
+  
 <div className="Slider">
-  <Slider settings={settings} >
-    <Slide style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <Image src={slide1} style={{ width: '100%' }} alt="" />
-    </Slide>
-    <Slide style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <Image src={slide2} style={{ width: '100%' }} alt="" />
-    </Slide>
-    <Slide style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <Image src={slide3} style={{ width: '100%' }} alt="" />
-    </Slide>
-  </Slider>
+    <Slider settings={settings} >
+      <Slide style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' , position: 'relative', height: '400px'}}>
+        <Image src="/1.png" fill={true} style={{ objectFit: 'cover' }} alt="" />
+      </Slide>
+      <Slide style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',  position: 'relative', height: '400px' }}>
+        <Image src="/2.png" fill={true} style={{ objectFit: 'cover' }} alt="" />
+      </Slide>
+      <Slide style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',  position: 'relative', height: '400px' }}>
+        <Image src="/3.png" fill={true} style={{ objectFit: 'cover' }} alt="" />
+      </Slide>
+    </Slider>
 </div>
+  
 );
 }
