@@ -59,7 +59,6 @@ export default function Home() {
           <p>Veja gráficos interativos do seu progresso financeiro.</p>
         </div>
       </section>
-      <Footer></Footer>
     </main> // 1. Fechamento do wrapper principal
 
   );
