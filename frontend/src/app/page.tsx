@@ -3,6 +3,7 @@ import { Slider, SliderProps, Slide } from '@/components/Slider/';
 import React from 'react';
 
 import Image from 'next/image'
+import Footer from '@/components/Rodape';
 
 export default function Home() {
   const settings: SliderProps = {
@@ -58,6 +59,7 @@ export default function Home() {
           <p>Veja gráficos interativos do seu progresso financeiro.</p>
         </div>
       </section>
+      <Footer></Footer>
     </main> // 1. Fechamento do wrapper principal
 
   );
