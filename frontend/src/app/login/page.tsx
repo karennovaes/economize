@@ -135,7 +135,7 @@ export default function LoginPage() {
             login(token, user);
 
             // 7. Redirecionar para o Dashboard
-            router.push('/'); // Redireciona para a página principal (Home/Dashboard)
+            router.push('/dashboard'); // Redireciona para a página principal (Home/Dashboard)
 
         } catch (error: any) {
             // 8. Tratar erros vindos do backend (ex: "Credenciais inválidas")
