@@ -1,0 +1,23 @@
+
+.Swiper{
+    padding: 32px;
+}
+
+.swiper-slide{
+    display: flex;
+    justify-content: center;
+}
+
+.swiper-paginaticon-bullet-active{
+    background-color: #5a3dc8;
+}
+
+.swiper-button-prev{
+    color: #5a3dc8;
+    top:30%;
+}
+
+.swiper-button-next{
+    color: #5a3dc8;
+    top:30%;
+}
