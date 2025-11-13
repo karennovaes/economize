@@ -1,0 +1,60 @@
+.container{
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.title{
+    color: #5a3dc8;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+form{
+    display: flex;
+     flex-direction: column;
+     gap: 15px;
+}
+
+.formGroup{
+    display: flex;
+    flex-direction: column;
+}
+
+.label{
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333
+}
+
+.input{
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+.textarea{
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    resize: vertical;
+}
+
+.button{
+    background-color: #5a3dc8;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: #1f1446 0.3s;
+}
+.statusMessage {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+    color: green;
+  }
