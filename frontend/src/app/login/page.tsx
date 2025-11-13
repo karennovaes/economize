@@ -1,9 +1,12 @@
 "use client"; // Necessário para 'useState' e 'onSubmit'
 import React, { useState } from 'react';
 
+import { useRouter } from 'next/navigation'; // 1. Importar o useRouter
+import { useAuth } from '@/context/AuthContext'; // 2. Importar o hook de autenticação
+import { loginUser, registerUser } from '@/api/authService'; // 3. Importar os serviços da API
+
+
 //Aqui por fim de estudo, vou utilizar uma abordagem diferente para o css
-
-
 // Estilos CSS Inline para o layout dividido
 const styles: { [key: string]: React.CSSProperties } = {
     // Container principal que ocupa a tela inteira e divide
@@ -77,15 +80,24 @@ const styles: { [key: string]: React.CSSProperties } = {
         color: '#555',
         marginBottom: '20px',
     },
-  // Novo estilo para o link "Esqueci a senha"
+    // Novo estilo para o link "Esqueci a senha"
     forgotPasswordLink: {
-    color: '#5a3dc8', // Cor roxa
-    fontSize: '14px',
-    textAlign: 'right',
-    textDecoration: 'none',
-    cursor: 'pointer',
-    marginBottom: '15px', // Espaço antes do botão de login
-  }
+        color: '#5a3dc8', // Cor roxa
+        fontSize: '14px',
+        textAlign: 'right',
+        textDecoration: 'none',
+        cursor: 'pointer',
+        marginBottom: '15px', // Espaço antes do botão de login
+    },
+    errorMessage: {
+        color: 'red',
+        backgroundColor: '#ffe6e6',
+        textAlign: 'center',
+        padding: '10px',
+        borderRadius: '8px',
+        marginTop: '10px',
+        fontSize: '14px',
+    }
 };
 
 
@@ -94,26 +106,71 @@ export default function LoginPage() {
     // --- Estados para o Formulário de Login ---
     const [loginEmail, setLoginEmail] = useState('');
     const [loginSenha, setLoginSenha] = useState('');
+    const [loginError, setLoginError] = useState(''); // Estado para erros de login
+    const [loginLoading, setLoginLoading] = useState(false); // Estado de loading
 
     // --- Estados para o Formulário de Cadastro ---
     const [cadastroNome, setCadastroNome] = useState('');
     const [cadastroEmail, setCadastroEmail] = useState('');
     const [cadastroSenha, setCadastroSenha] = useState('');
+    const [cadastroError, setCadastroError] = useState(''); // Estado para erros de cadastro
+    const [cadastroLoading, setCadastroLoading] = useState(false); // Estado de loading
+
+    // 4. Inicializar os hooks
+    const router = useRouter();
+    const { login } = useAuth(); // Função 'login' do nosso AuthContext
 
     // Função para lidar com o envio (simulação por enquanto)
-    const handleSubmitLogin = (e: React.FormEvent) => {
+    const handleSubmitLogin = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Próximo passo: conectar ao backend aqui
-        console.log("Dados Login:", { loginEmail, loginSenha });
-        alert('Simulação: Login enviado!');
+
+        setLoginError(''); // Limpa erros antigos
+        setLoginLoading(true); // Ativa o loading
+
+        try {
+            // 5. Chamar a API de login
+            const { token, user } = await loginUser({ email: loginEmail, senha: loginSenha });
+
+            // 6. Atualizar o contexto global
+            login(token, user);
+
+            // 7. Redirecionar para o Dashboard
+            router.push('/'); // Redireciona para a página principal (Home/Dashboard)
+
+        } catch (error: any) {
+            // 8. Tratar erros vindos do backend (ex: "Credenciais inválidas")
+            setLoginError(error.message || 'Erro ao tentar fazer login.');
+        } finally {
+            setLoginLoading(false); // Desativa o loading
+        }
+
+
     };
 
-    // Função para lidar com o envio (simulação por enquanto)
-    const handleSubmitCadastro = (e: React.FormEvent) => {
+    // Função para lidar com o envio de Cadastro (agora conectada ao backend)
+    const handleSubmitCadastro = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Próximo passo: conectar ao backend aqui
-        console.log("Dados Cadastro:", { cadastroNome, cadastroEmail, cadastroSenha });
-        alert('Simulação: Cadastro enviado!');
+        setCadastroError(''); // Limpa erros antigos
+        setCadastroLoading(true); // Ativa o loading
+
+        try {
+            // 5. Chamar a API de cadastro
+            await registerUser({ nome: cadastroNome, email: cadastroEmail, senha: cadastroSenha });
+
+            // 6. Sucesso: Informar o utilizador e pedir para fazer login
+            alert('Cadastro realizado com sucesso! Por favor, faça login.');
+
+            // Limpa os campos de cadastro (opcional)
+            setCadastroNome('');
+            setCadastroEmail('');
+            setCadastroSenha('');
+
+        } catch (error: any) {
+            // 8. Tratar erros vindos do backend (ex: "Email já em uso")
+            setCadastroError(error.message || 'Erro ao tentar cadastrar.');
+        } finally {
+            setCadastroLoading(false); // Desativa o loading
+        }
     };
 
     return (
@@ -148,12 +205,14 @@ export default function LoginPage() {
                             required
                         />
                     </div>
-                        {/* --- Link "Esqueci a senha" Adicionado --- */}
-                        <a href="#" style={styles.forgotPasswordLink}>
-                            Esqueci a senha
-                        </a>
-                    <button type="submit" style={styles.button}>
-                        Entrar
+                    {/* --- Link "Esqueci a senha" Adicionado --- */}
+                    <a href="#" style={styles.forgotPasswordLink}>
+                        Esqueci a senha
+                    </a>
+                    {/* Mostrar erro de login, se existir */}
+                    {loginError && <p style={styles.errorMessage}>{loginError}</p>}
+                    <button type="submit" style={styles.button} disabled={loginLoading}>
+                        {loginLoading ? 'A entrar...' : 'Entrar'}
                     </button>
                 </form>
             </div>
@@ -200,9 +259,10 @@ export default function LoginPage() {
                             required
                         />
                     </div>
-
-                    <button type="submit" style={styles.button}>
-                        Criar Conta
+                    {/* Mostrar erro de cadastro, se existir */}
+                    {cadastroError && <p style={styles.errorMessage}>{cadastroError}</p>}
+                    <button type="submit" style={styles.button} disabled={cadastroLoading}>
+                        {cadastroLoading ? 'A criar conta...' : 'Criar Conta'}
                     </button>
                 </form>
             </div>
