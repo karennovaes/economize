@@ -48,12 +48,15 @@ export default function Navbar() {
                         />
                     ))}
                 </ul>
-            <button className="btn-mobile" onClick={() => setOpenMenu(!openMenu)}>
+            <button  className="btn-mobile" onClick={() => setOpenMenu(!openMenu)}>
                 {openMenu ? <FaXmark /> : <FaBars />}
             </button >
+            <Link href="/login">
             <button className='btn-default'>
                 Entrar
             </button>
+            </Link>
+
             
 
             </nav>
