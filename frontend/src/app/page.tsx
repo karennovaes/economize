@@ -4,6 +4,7 @@ import React from 'react';
 
 import Image from 'next/image'
 import Footer from '@/components/Rodape';
+import Navbar from '@/components/Navbar/Public';
 
 export default function Home() {
   const settings: SliderProps = {
@@ -17,6 +18,7 @@ export default function Home() {
     // 1. Wrapper principal (use <main> para conteúdo principal)
     // Demos um padding geral para a página.
     <main>
+      <Navbar></Navbar>
       {/* 2. Div do Slider (com 40% da largura e centralizada) */}
       <div className="Slider">
         <Slider settings={settings} >

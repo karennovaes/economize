@@ -1,6 +1,7 @@
 "use client"; // Necessário para usar 'useState' no formulário
 import React, { useState } from 'react';
 import "./index.css"
+import Navbar from '@/components/Navbar/Public';
 
 
 export default function Contato() {
@@ -30,6 +31,7 @@ export default function Contato() {
 
     return (
         <main className='container'>
+            <Navbar></Navbar>
             <h2 className='title'>Entre em Contato</h2>
             <p style={{ textAlign: 'center', marginBottom: '20px', color: '#555' }}>
                 Tem alguma dúvida ou sugestão? Mande uma mensagem para nós.

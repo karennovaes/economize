@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image'
-import NavItem, { NavItemInterface } from '../NavItem';
+import NavItem, { NavItemInterface } from "../../NavItem";
 import "./index.css"
 import { usePathname } from 'next/navigation';
 import { FaBars, FaXmark } from 'react-icons/fa6';

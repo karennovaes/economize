@@ -4,6 +4,8 @@ import { useAuth } from '@/context/AuthContext'; // Importamos o hook de autenti
 import { useRouter } from 'next/navigation';
 
 import "./index.css"
+import Navbar from '@/components/Navbar/Privada';
+import Sidebar from '@/components/Sidebar';
 
 /**
  * Esta é uma Rota Protegida.
@@ -44,13 +46,12 @@ export default function DashboardPage() {
     isLoggedIn && user && (
       // 2. Usar className do CSS Module
       <main className="container">
+        <Navbar></Navbar>
         <div className="header">
           <h1 className="title">Dashboard Economize</h1>
-          <button onClick={handleLogout} className="logoutButton">
-            Sair
-          </button>
+
         </div>
-        
+        <Sidebar></Sidebar>
         <h2>Olá, {user.nome}!</h2>
         <p>Bem-vindo ao seu painel de controlo financeiro.</p>
 

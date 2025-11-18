@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./styles.css";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/Navbar/Public";
 import Footer from "@/components/Rodape";
 // 1. Importar o AuthProvider
 import { AuthProvider } from "@/context/AuthContext";
@@ -26,7 +26,7 @@ export default function RootLayout({
     <html lang="pt-br">
       <body className={poppins.className}>
         <AuthProvider>
-          <Navbar></Navbar>
+
           <main style={{ minHeight: 'calc(100vh - 150px)' }}> {/* Garante que o footer fica em baixo */}
             {children}
           </main>
