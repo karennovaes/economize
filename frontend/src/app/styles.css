@@ -4,3 +4,14 @@
     box-sizing: border-box;
 }
 
+.appMain {
+  /* 1. Define a altura EXATA da área disponível (Tela - Navbar) */
+  /* A Navbar tem 70px, então o resto é 100vh - 70px */
+  height: calc(100vh - 70px); 
+  /* 2. Organiza Conteúdo e Footer verticalmente */
+  display: flex;
+  flex-direction: column;
+
+  /* 3. Impede que a página inteira tenha barra de rolagem */
+  overflow: hidden;
+}

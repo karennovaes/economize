@@ -92,85 +92,87 @@ export default function DashboardPage() {
   };
 
   return (
-    
-    <div className="container">
+    <main>
       <Navbar></Navbar>
-      {/* Cabeçalho */}
-      <header className="header">
-        <h1 className="title">
-          Olá, <span className="highlight">{user?.nome || 'Usuário'}</span>!
-        </h1>
-        <p className="subtitle">Aqui está o resumo das suas finanças este mês.</p>
-      </header>
-
-      {/* Grid de Cartões (KPIs) */}
-      <div className="summaryGrid">
-        <div className="card cardIncome">
-          <span className="cardTitle">Receitas Totais</span>
-          <span className="cardValue">R$ {balance.totalReceitas.toFixed(2)}</span>
-        </div>
-        <div className="card cardExpense">
-          <span className="cardTitle">Despesas Totais</span>
-          <span className="cardValue">R$ {balance.totalDespesas.toFixed(2)}</span>
-        </div>
-        <div className="card cardBalance">
-          <span className="cardTitle">Saldo Atual</span>
-          <span className= "cardValue">R$ {balance.saldoAtual.toFixed(2)}</span>
-        </div>
-      </div>
-
-      {/* Área Principal Dividida (Gráfico + Transações Recentes) */}
-      <div className="mainContentGrid">
+      <div className="container">
         
-        {/* Secção 1: Gráfico */}
-        <div className="chartSection">
-          <div className="sectionHeader">
-            <h3 className="sectionTitle">Distribuição de Despesas</h3>
+        {/* Cabeçalho */}
+        <header className="header">
+          <h1 className="title">
+            Olá, <span className="highlight">{user?.nome || 'Usuário'}</span>!
+          </h1>
+          <p className="subtitle">Aqui está o resumo das suas finanças este mês.</p>
+        </header>
+
+        {/* Grid de Cartões (KPIs) */}
+        <div className="summaryGrid">
+          <div className="card cardIncome">
+            <span className="cardTitle">Receitas Totais</span>
+            <span className="cardValue">R$ {balance.totalReceitas.toFixed(2)}</span>
           </div>
-          
-          {summary && summary.length > 0 ? (
-            <div className="chartContainer">
-              <Pie data={pieData} options={{ maintainAspectRatio: false, responsive: true }} />
+          <div className="card cardExpense">
+            <span className="cardTitle">Despesas Totais</span>
+            <span className="cardValue">R$ {balance.totalDespesas.toFixed(2)}</span>
+          </div>
+          <div className="card cardBalance">
+            <span className="cardTitle">Saldo Atual</span>
+            <span className="cardValue">R$ {balance.saldoAtual.toFixed(2)}</span>
+          </div>
+        </div>
+
+        {/* Área Principal Dividida (Gráfico + Transações Recentes) */}
+        <div className="mainContentGrid">
+
+          {/* Secção 1: Gráfico */}
+          <div className="chartSection">
+            <div className="sectionHeader">
+              <h3 className="sectionTitle">Distribuição de Despesas</h3>
             </div>
-          ) : (
-            <p className="emptyState">Sem despesas este mês.</p>
-          )}
-        </div>
 
-        {/* Secção 2: Últimas Transações */}
-        <div className="transactionsSection">
-          <div className="sectionHeader">
-            <h3 className="sectionTitle">Últimas Transações</h3>
-            <Link href="/transacoes" className="viewAllLink">Ver todas</Link>
+            {summary && summary.length > 0 ? (
+              <div className="chartContainer">
+                <Pie data={pieData} options={{ maintainAspectRatio: false, responsive: true }} />
+              </div>
+            ) : (
+              <p className="emptyState">Sem despesas este mês.</p>
+            )}
           </div>
 
-          {recentTransactions.length > 0 ? (
-            <ul className="transactionList">
-              {recentTransactions.map((t) => (
-                <li key={t.id} className="transactionItem">
-                  <div className="transactionInfo">
-                    <span className="transactionDesc">{t.descricao}</span>
-                    <div className="transactionMeta">
-                      <span>{new Date(t.data).toLocaleDateString()}</span>
-                      {t.categoria?.nome && (
-                        <span className="categoryTag">{t.categoria.nome}</span>
-                      )}
-                    </div>
-                  </div>
-                  <span className={`'transactionAmount ' ${t.tipo === 'Receita' ? 'income' : 'expense'}`}>
-                    {t.tipo === 'Receita' ? '+ ' : '- '}
-                    R$ {t.valor.toFixed(2)}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="emptyState">Nenhuma transação recente.</p>
-          )}
-        </div>
+          {/* Secção 2: Últimas Transações */}
+          <div className="transactionsSection">
+            <div className="sectionHeader">
+              <h3 className="sectionTitle">Últimas Transações</h3>
+              <Link href="/transacoes" className="viewAllLink">Ver todas</Link>
+            </div>
 
+            {recentTransactions.length > 0 ? (
+              <ul className="transactionList">
+                {recentTransactions.map((t) => (
+                  <li key={t.id} className="transactionItem">
+                    <div className="transactionInfo">
+                      <span className="transactionDesc">{t.descricao}</span>
+                      <div className="transactionMeta">
+                        <span>{new Date(t.data).toLocaleDateString()}</span>
+                        {t.categoria?.nome && (
+                          <span className="categoryTag">{t.categoria.nome}</span>
+                        )}
+                      </div>
+                    </div>
+                    <span className={`'transactionAmount ' ${t.tipo === 'Receita' ? 'income' : 'expense'}`}>
+                      {t.tipo === 'Receita' ? '+ ' : '- '}
+                      R$ {t.valor.toFixed(2)}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="emptyState">Nenhuma transação recente.</p>
+            )}
+          </div>
+
+        </div>
       </div>
-    </div>
+    </main>
   );
 
 

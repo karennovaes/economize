@@ -1,40 +1,7 @@
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  font-family: Arial, sans-serif;
-  background-color: #c82333;
-}
-.logoutButton {
-  background-color: #dc3545;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.logoutButton:hover {
-  background-color: #c82333;
-}
-
-.loadingText {
-  text-align: center;
-  font-size: 18px;
-  color: #555;
-  margin-top: 50px;
-}
-
-
-
-/* ... (estilos anteriores de container, header e cards mantidos) ... */
-/*
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  font-family: Arial, sans-serif;
+  margin: 20px;
+  height: calc(100vh - 50px);
+  overflow: hidden;
 }
 
 .header {
@@ -47,7 +14,6 @@
   color: #333;
   margin-bottom: 5px;
 }
-
 .highlight {
   color: #5a3dc8;
 }
@@ -64,6 +30,7 @@
   margin-bottom: 40px;
 }
 
+
 .card {
   background-color: white;
   padding: 25px;
@@ -74,7 +41,6 @@
   flex-direction: column;
   justify-content: center;
 }
-
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
@@ -106,23 +72,24 @@
   font-weight: bold;
 }
 
+
 /* --- LAYOUT PRINCIPAL DO CONTEÚDO (Gráfico + Lista) --- */
-/*
+
 .mainContentGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr; // Divisão 50% / 50% em telas grandes 
+  grid-template-columns: 1fr 1fr; /* Divisão 50% / 50% em telas grandes */
   gap: 20px;
 }
-*/
-/*
+
+
 @media (max-width: 768px) {
   .mainContentGrid {
-    grid-template-columns: 1fr; //Empilha em telas menores 
+    grid-template-columns: 1fr; /*Empilha em telas menores */
   }
 }
-*/
+
 /* --- SECÇÃO DO GRÁFICO --- */
-/*
+
 .chartSection {
   background-color: white;
   padding: 30px;
@@ -131,7 +98,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%; // Ocupa a altura total do grid 
+  height: 100%; /* Ocupa a altura total do grid */
 }
 
 .sectionHeader {
@@ -158,9 +125,9 @@
   display: flex;
   justify-content: center;
 }
-*/
+
 /* --- SECÇÃO DE TRANSAÇÕES RECENTES --- */
-/*
+
 .transactionsSection {
   background-color: white;
   padding: 30px;
@@ -257,4 +224,3 @@
   margin-top: 20px;
   text-align: center;
 }
-*/

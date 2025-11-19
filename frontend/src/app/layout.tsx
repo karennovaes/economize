@@ -27,7 +27,7 @@ export default function RootLayout({
       <body className={poppins.className}>
         <AuthProvider>
 
-          <main style={{ minHeight: 'calc(100vh - 150px)' }}> {/* Garante que o footer fica em baixo */}
+          <main className="appMain">
             {children}
           </main>
           <Footer></Footer>
