@@ -1,15 +1,9 @@
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 2px solid #eee;
-  padding-bottom: 10px;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background-color: #c82333;
 }
-
-.title {
-  color: #5a3dc8; /* Cor roxa */
-}
-
 .logoutButton {
   background-color: #dc3545;
   color: white;

@@ -10,10 +10,30 @@ import { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 
 export default function Navbar() {
+    const itens: NavItemInterface[] = [
+        {
+            url: "/dashboard",
+            label: "Dashboard"
 
+        },
+        {
+            url: "/transacoes",
+            label: "Transações"
+
+        },
+        {
+            url: "/extratos",
+            label: "Extratos"
+
+        },
+
+
+    ]
 
     const { user, logout } = useAuth();
     const router = useRouter();
+    const pathname = usePathname();
+    const [openMenu, setOpenMenu] = useState<boolean>(false);
 
     // 2. Estado para controlar o dropdown
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,7 +62,16 @@ export default function Navbar() {
                         height={50}
                         alt="Logo do sistema" />
                 </Link>
-
+                <ul className={`nav-items ${openMenu ? 'open' : ''}`}>
+                    {itens.map((item, index) => (
+                        <NavItem
+                            key={index}
+                            url={item.url}
+                            label={item.label}
+                            isActive={pathname === item.url}
+                        />
+                    ))}
+                </ul>
                 {/* 4. Novo Menu do Utilizador (Avatar e Dropdown) */}
                 <div className="userMenuContainer">
                     <button
@@ -69,9 +98,6 @@ export default function Navbar() {
                 </div>
 
             </nav>
-
-
-
         </header >
     )
 }
