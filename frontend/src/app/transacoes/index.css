@@ -3,7 +3,6 @@
   margin: 0 auto;
 }
 
-
 .header {
   display: flex;
   justify-content: space-between;
@@ -108,4 +107,3 @@
 
 .loading { text-align: center; margin-top: 50px; color: #5a3dc8; }
 .empty { text-align: center; padding: 40px; color: #777; }
-

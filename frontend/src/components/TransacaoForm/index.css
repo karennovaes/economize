@@ -19,6 +19,8 @@
   max-width: 500px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   position: relative;
+  max-height: 90vh; /* Limite de altura */
+  overflow-y: auto; /* Scroll se necessário */
 }
 
 .title {
@@ -105,11 +107,94 @@
   text-align: center;
 }
 
+/* --- Estilos de Categoria --- */
+
 .categoryLink {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: #5a3dc8;
-  text-decoration: underline;
+  text-decoration: none;
   cursor: pointer;
   margin-top: 5px;
   display: inline-block;
+  font-weight: 600;
+  margin-right: 15px;
+}
+
+.categoryLink:hover {
+  text-decoration: underline;
+}
+
+.newCategoryContainer {
+  display: flex;
+  gap: 8px;
+  margin-top: 5px;
+  align-items: center;
+}
+
+.miniInput {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.miniBtn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btnConfirm {
+  background-color: #28a745;
+  color: white;
+}
+
+.btnDiscard {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* --- Lista de Gerenciamento de Categorias --- */
+.categoryList {
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 0 0;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.categoryItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid #f5f5f5;
+  font-size: 0.9rem;
+}
+
+.categoryItem:last-child {
+  border-bottom: none;
+}
+
+.deleteCatBtn {
+  background: none;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deleteCatBtn:hover {
+  background-color: #ffe6e6;
 }
