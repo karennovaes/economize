@@ -21,13 +21,6 @@ export default function Navbar() {
             label: "Transações"
 
         },
-        {
-            url: "/extratos",
-            label: "Extratos"
-
-        },
-
-
     ]
 
     const { user, logout } = useAuth();
