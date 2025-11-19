@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image'
-import NavItem, { NavItemInterface } from '../NavItem';
+import NavItem, { NavItemInterface } from "../../NavItem";
 import "./index.css"
 import { usePathname } from 'next/navigation';
 import { FaBars, FaXmark } from 'react-icons/fa6';
@@ -48,12 +48,15 @@ export default function Navbar() {
                         />
                     ))}
                 </ul>
-            <button className="btn-mobile" onClick={() => setOpenMenu(!openMenu)}>
+            <button  className="btn-mobile" onClick={() => setOpenMenu(!openMenu)}>
                 {openMenu ? <FaXmark /> : <FaBars />}
             </button >
+            <Link href="/login">
             <button className='btn-default'>
                 Entrar
             </button>
+            </Link>
+
             
 
             </nav>

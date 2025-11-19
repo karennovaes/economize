@@ -1,0 +1,127 @@
+header {
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2px 3%;
+        background-color: #13131d;
+        box-shadow: 0px 15px 16px -7px rgba(0, 0, 0, 0.1);
+
+    }
+
+    .logo {
+        img {
+            width: 150px;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    }
+
+    .nav-items {
+        display: flex;
+        gap: 32px;
+        align-items: center;
+        list-style: none;
+
+        &.open {
+            flex-direction: column;
+            position: absolute;
+            top: 90px;
+            left: 0;
+            width: 100%;
+            background-color: #13131d;
+            padding: 20px;
+        }
+    }
+
+    .userMenuContainer {
+        position: relative;
+        /* Contexto para o dropdown */
+    }
+
+    .avatarButton {
+        background-color: #5a3dc8;
+        /* Cor roxa */
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 5px;
+        /* Ajuste para as iniciais */
+    }
+
+    .arrowDown {
+        font-size: 10px;
+        margin-left: 2px;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .dropdownMenu {
+        position: absolute;
+        top: 55px;
+        /* Abaixo do botão avatar */
+        right: 0;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border: 1px solid #eee;
+        width: 200px;
+        z-index: 1002;
+        overflow: hidden;
+        /* Para arredondar os cantos dos botões internos */
+    }
+
+    .dropdownLink {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 12px 20px;
+        color: #333;
+        text-decoration: none;
+        font-size: 15px;
+        background-color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    .dropdownLink:hover {
+        background-color: #f9f9f9;
+        color: #5a3dc8;
+    }
+
+    .logoutButton {
+        color: #dc3545;
+        /* Vermelho para "Sair" */
+        border-top: 1px solid #f0f0f0;
+    }
+
+    .logoutButton:hover {
+        background-color: #fdf2f2;
+        color: #dc3545;
+    }
+        @media screen and (max-width: 768px){
+        .btn-mobile{
+            display: flex;
+        }
+        .nav-items{
+            display: none;
+
+            &.open {
+                display: block;
+            }
+        }
+        .btn-default{
+            display: none;
+        }
+    }
+
+}
+
